@@ -1,26 +1,26 @@
-# Web Development Project 2 - *Dhamma Flashcards*
+# Web Development Project 2 - *Flashcards*
 
 Submitted by: **Alicia Nash**
 
-This web app: **This is a simple flashcard webapp that helps you learn and remember basic Pali words**
+This web app: **This is a simple flashcard webapp that helps you learn Mandarin**
 
-Time spent: **X** hours spent in total
+Time spent: **2** hours spent in total
 
 ## Required Features
 
 The following **required** functionality is completed:
 
-- [ ] **The title of the card set and some information about it, such as a short description and the total number of cards are displayed**
-- [ ] **A single card at a time is displayed, only showing one of the components of the information pair**
-- [ ] **A list of card pairs is created**
-- [ ] **Clicking on the card shows the corresponding component of the information pair**
-- [ ] **Clicking the next button displays a random new card**
+- [x] **The title of the card set and some information about it, such as a short description and the total number of cards are displayed**
+- [x] **A single card at a time is displayed, only showing one of the components of the information pair**
+- [x] **A list of card pairs is created**
+- [x] **Clicking on the card shows the corresponding component of the information pair**
+- [x] **Clicking the next button displays a random new card**
 
 The following **optional** features are implemented:
 
 - [ ] Cards contains images in addition to or in place of text
 - [ ] Cards have different visual styles such as color based on their category
-  - [ ] *visual style implemented*
+- [ ] *visual style implemented*
 
 The following **additional** features are implemented:
 
@@ -30,13 +30,13 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented required features:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/aliciacyg/flashcards/blob/main/gifdemo.gif' title='Video Walkthrough' width='' alt='Video Walkthrough'/>
 
 GIF created with [ScreenToGif](https://www.screentogif.com/) for Windows
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+I had to add a delay to the button handler because it was showing the next card's answer prematurely. I made sure the delay only applied when necessary, otherwise it would make the app feel slow.
 
 ## License
 
