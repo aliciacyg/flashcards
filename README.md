@@ -1,4 +1,4 @@
-# Web Development Project 2 - *Flashcards*
+# Web Development Project 3 - *Flashcards! Pt 2*
 
 Submitted by: **Alicia Nash**
 
@@ -10,17 +10,17 @@ Time spent: **2** hours spent in total
 
 The following **required** functionality is completed:
 
-- [x] **The title of the card set and some information about it, such as a short description and the total number of cards are displayed**
-- [x] **A single card at a time is displayed, only showing one of the components of the information pair**
-- [x] **A list of card pairs is created**
-- [x] **Clicking on the card shows the corresponding component of the information pair**
-- [x] **Clicking the next button displays a random new card**
+- [X] **The user can enter their guess in a box before seeing the flipside of the card**
+- [X] **Clicking on a submit button shows visual feedback about whether the answer was correct or incorrect**
+- [X] **A back button is displayed on the card and can be used to return to the previous card in a set sequence**
+- [X] **A next button is displayed on the card and can be used to navigate to the next card in a set sequence**
 
 The following **optional** features are implemented:
 
-- [ ] Cards contains images in addition to or in place of text
-- [ ] Cards have different visual styles such as color based on their category
-- [ ] *visual style implemented*
+- [X] A shuffle button is used to randomize the order of the cards
+- [X] A user's answer may be counted as correct even when it is slightly different from the target answer
+- [X] A counter displays the user's current and longest streak of correct responses
+- [ ] A user can mark a card that they have mastered and have it removed from the pool of answers as well as added to a list of mastered cards
 
 The following **additional** features are implemented:
 
@@ -28,15 +28,19 @@ The following **additional** features are implemented:
 
 ## Video Walkthrough
 
-Here's a walkthrough of implemented required features:
+Here's a walkthrough of implemented user stories:
 
-<img src='https://github.com/aliciacyg/flashcards/blob/main/gifdemo.gif' title='Video Walkthrough' width='' alt='Video Walkthrough'/>
+<img src='https://github.com/aliciacyg/flashcards/blob/main/gifdemo.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [ScreenToGif](https://www.screentogif.com/) for Windows
 
 ## Notes
 
-I had to add a delay to the button handler because it was showing the next card's answer prematurely. I made sure the delay only applied when necessary, otherwise it would make the app feel slow.
+This part of the project was a lot of fun to work on, figuring out how to implement the form without sacrificing in smoothness. I focused on making the app very responsive to changes. For instance:
+    - Form is disabled after a guess is made or if the user has seen the answer. 
+    - Streak is reset if user flips a card to see the answer.
+    - User cannot make a guess, even if they flip the card back to the front
+I put a lot of attention into details like this to make the application feel clean and responsive. 
 
 ## License
 

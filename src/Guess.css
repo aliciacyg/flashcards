@@ -1,0 +1,24 @@
+.guess-container {
+    margin-top: 20px;
+  }
+  
+  input {
+    padding: 10px;
+    margin-right: 10px;
+  }
+  
+  button {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    background-color: lightgray;
+    cursor: not-allowed;
+  }
+  
+  p {
+    font-weight: bold;
+    color: green;
+  }
+  

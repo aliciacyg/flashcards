@@ -1,10 +1,11 @@
 import './App.css';
 import Card from './Card.jsx';
+import Guess from './Guess.jsx';
 import React, { useState } from 'react';
 
 
 const App = () => {
-  const flashcards = [
+  const initFlashcards = [
     { chinese: "今天", english: "Today" },
     { chinese: "看", english: "To see" },
     { chinese: "小", english: "Small" },
@@ -48,32 +49,87 @@ const App = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
+  const [guessMade, setGuessMade] = useState(false);
+  const [flashcards, setFlashcards] = useState(initFlashcards);
+  const [streak, setStreak] = useState(0);
+  const [longestStreak, setLongestStreak] = useState(0);
 
   // Reset flip state when moving to the next card
   const handleNextCard = () => {
-    const randomIndex = Math.floor(Math.random() * flashcards.length);
+    const index = currentIndex + 1;
     // Delay the change to the next card to avoid showing back prematurely
     if (flipped){
       setFlipped(false); 
       setTimeout(() => {
-      setCurrentIndex(randomIndex);
+      setCurrentIndex(index);
       }, 600); 
     }
     else {
-      setCurrentIndex(randomIndex);
+      setCurrentIndex(index);
     }
+    // Reset guess state when moving to next card, re-enables answer submission
+    setGuessMade(false);
+  };
+
+  const handlePrevCard = () => {
+    const index = currentIndex - 1;
+    // Delay the change to the next card to avoid showing back prematurely
+    if (flipped){
+      setFlipped(false); 
+      setTimeout(() => {
+      setCurrentIndex(index);
+      }, 600); 
+    }
+    else {
+      setCurrentIndex(index);
+    }
+    // Reset guess state when moving to next card, re-enables answer submission
+    setGuessMade(false);
+  }
+
+  const handleShuffle = () => {
+    // Copy the flashcards
+    const shuffledCards = [...flashcards];
+    // Fisher-Yates shuffle algorithm
+    for (let i = shuffledCards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledCards[i], shuffledCards[j]] = [shuffledCards[j], shuffledCards[i]]; // Swap elements
+    }
+    setFlashcards(shuffledCards);
+    setCurrentIndex(0);
+    setFlipped(false);
+    setGuessMade(false);
+  };
+
+  const handleCorrectGuess = (isCorrect) => {
+    if (isCorrect) {
+      const newStreak = streak + 1;
+      setStreak(newStreak);
+      if (newStreak > longestStreak) {
+        setLongestStreak(newStreak);
+      }
+    } else {
+      setStreak(0);
+    }
+    // Disable answer submission after a guess is made
+    setGuessMade(true);
   };
 
   // Toggle flip state when card is clicked
   const handleCardClick = () => {
-    setFlipped(!flipped); 
+    if (flipped) {
+      setGuessMade(true);
+    }
+    setFlipped(!flipped);
+    setStreak(0); // Reset streak when card is flipped
   };
 
   return (
     <div className="App">
-      <h1>Quick Mandarin Study</h1>
+      <h1>Study Mandarin</h1>
       <h2>Take a quick Mandarin lesson. Try to remember the characters!</h2>
       <h3>Number of cards: {flashcards.length}</h3>
+      <h4>Current streak: {streak}, Longest streak: {longestStreak}</h4>
       <div className="card-container">
       <Card 
         chinese={flashcards[currentIndex].chinese} 
@@ -83,7 +139,19 @@ const App = () => {
       />
       </div>
       <br></br>
-      <button onClick={handleNextCard}>Next Card</button>
+      <Guess
+      flashcard={flashcards[currentIndex]}
+      onCorrectGuess={handleCorrectGuess}
+      flipped={flipped}
+      guessMade={guessMade}/>
+      <div className="button-container">
+        <button onClick={handlePrevCard} 
+        disabled={currentIndex === 0}>←</button>
+        <button onClick={handleNextCard}
+        disabled={currentIndex === 38}>→</button>
+        <button onClick={handleShuffle}>Shuffle</button>
+      </div>
+      
     </div>
   )
 }
